@@ -1,0 +1,67 @@
+﻿@model InfoEditViewModel
+
+@{
+    ViewBag.Title = "Application data update panel";
+    Layout = "_AdminLayout";
+    var photoPath = "~/images/" + (Model.ExistingImagePath ?? "HomePageImg.jpg");
+}
+
+    <div class="card text-center m-2 p-2">
+        <form asp-action="EditInfo" asp-controller="Admin" enctype="multipart/form-data" method="post">
+            <input hidden asp-for="Id" />
+            <input hidden asp-for="ExistingImagePath" />
+
+            <div class="form-group">
+                <label asp-for="AppName">Application Name:</label>
+                <input type="text" asp-for="AppName" class="form-control" />
+                <span asp-validation-for="AppName" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="AppAddress">Application Address:</label>
+                <input type="text" asp-for="AppAddress" class="form-control" />
+                <span asp-validation-for="AppAddress" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="AppImages">Application home page image</label>
+                <div class="custom-file">
+                    <input asp-for="AppImages" class="form-control custom-file-input" />
+                    <label class="custom-file-label">Click here to change image...</label>
+                </div>
+            </div>
+            <div class="form-group row col-sm-4 offset-4">
+                <img src="@photoPath" class="imgThumbnail" asp-append-version="true" />
+            </div>
+            <a asp-action="SocialList" class="btn btn-sm btn-outline-success">Add Social Address panel</a>
+            <hr />
+            <div class="form-group">
+                <label asp-for="AppDescription">Description</label>
+                <textarea asp-for="AppDescription" class="form-control" rows="7" cols="200"></textarea>
+                <span asp-validation-for="AppDescription" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="AppPhone1">Application first phone number:</label>
+                <input asp-for="AppPhone1" class="form-control" placeholder="First Phone number..." />
+                <span asp-validation-for="AppPhone1" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="AppPhone2">Application second phone number:</label>
+                <input asp-for="AppPhone2" class="form-control" placeholder="Second Phone number..." />
+                <span asp-validation-for="AppPhone2" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group row m-1">
+                <h5><label>Ваш емейл адрес:</label></h5>
+                <input asp-for="AppEmail" class="form-control" placeholder="Enter Application Email..." />
+                <span asp-validation-for="AppEmail" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-outline-success" />
+                <a asp-action="Index" asp-controller="Admin" class="btn btn-outline-warning">Cancel</a>
+            </div>
+        </form>
+    </div>

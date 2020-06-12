@@ -1,0 +1,8 @@
+﻿@model IEnumerable<AppSocialAddress>
+
+@foreach (var item in Model)
+{
+    <a href="@item.UrlAddress">
+        <img class="borderRadius border border-dark" src="~/images/@item.AppSocialImg" height="40" width="40" asp-append-version="true" />
+    </a>
+}

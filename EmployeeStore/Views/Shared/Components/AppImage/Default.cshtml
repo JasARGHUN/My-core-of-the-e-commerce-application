@@ -1,0 +1,7 @@
+﻿@model AppInfo
+
+@{
+    var photoPath = "~/images/" + (Model.AppImage ?? "HomePageImg.jpg");
+}
+
+<img class="card-img" src="@photoPath" asp-append-version="true" alt="" style="background:no-repeat 50% 50%" />

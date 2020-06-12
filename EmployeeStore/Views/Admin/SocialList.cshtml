@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AppSocialAddress>
+
+@{
+    ViewBag.Title = "Control panel: Social Data";
+    Layout = "_AdminLayout";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Social URL</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+
+        <tbody>
+            <tr>
+                <th>@item.UrlAddress</th>
+                <td class="text-right">
+                    <form asp-action="DeleteSocialAddress" asp-route-id="@item.Id" method="post">
+                        <a class="btn btn-outline-warning" asp-action="EditSocialData" asp-route-id="@item.Id">Edit</a>
+                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('do you really want to delete: @item.UrlAddress')">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
+<a asp-action="CreateSocialData" class="btn btn-sm btn-outline-success">Add social URL-address</a>
+<a asp-action="Index" class="btn btn-sm btn-outline-primary">Back</a>
